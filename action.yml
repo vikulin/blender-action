@@ -1,21 +1,22 @@
 name: 'Blender Action'
-description: 'GitHub Action to automate Blender tasks e.g export 3D model to STL file'
+description: 'GitHub Action to automate Blender tasks such as STL export and PNG render'
 
 inputs:
-  input-file:
+  input_file:
     description: 'Blender source file'
     required: true
-  output-file:
-    description: 'Name of the output file (stl)'
-    required: true
-    default: 'output.stl'
-    
+
+  output_file:
+    description: 'Path to export STL file'
+    required: false
+
+  render_file:
+    description: 'Path to rendered PNG file (frame 1)'
+    required: false
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.input-file }}
-    - ${{ inputs.output-file }}
 
 branding:
   icon: 'zap'
