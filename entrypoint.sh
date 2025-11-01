@@ -35,9 +35,19 @@ if [[ -n "$THUMBNAIL_FILE" ]]; then
     DEB_URL="https://github.com/unlimitedbacon/stl-thumb/releases/download/v0.5.0/stl-thumb_0.5.0_amd64.deb"
     DEB_FILE="/tmp/stl-thumb_0.5.0_amd64.deb"
     curl -L -o "$DEB_FILE" "$DEB_URL"
-    sudo apt-get install -y "$DEB_FILE" || sudo dpkg -i "$DEB_FILE"
+
+    sudo apt-get update
+    sudo apt-get install -y software-properties-common
+    sudo add-apt-repository universe
+    sudo apt-get update
+
+    # Install dependencies
+    sudo apt-get install -y libosmesa6-dev libgl1-mesa-dri libglx-mesa0 xvfb
+
+    # Install the .deb package
+    sudo dpkg -i "$DEB_FILE" || sudo apt-get -f install -y
   fi
 
   # Generate preview
-  stl-thumb "$GITHUB_WORKSPACE/$OUTPUT_FILE" "$GITHUB_WORKSPACE/$THUMBNAIL_FILE" --size 800 --background transparent
+  xvfb-run -a stl-thumb "$GITHUB_WORKSPACE/$OUTPUT_FILE" "$GITHUB_WORKSPACE/$THUMBNAIL_FILE" --size 800
 fi
