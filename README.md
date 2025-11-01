@@ -16,7 +16,7 @@
 | Name             | Description                          | Required | Default      |
 |------------------|--------------------------------------|----------|--------------|
 | `input_file`     | Path to the Blender source file      | ✅ Yes   | —            |
-| `output_file`    | Path to export STL file              | ❌ No    | —            |
+| `output_file`    | Path to export STL file              | ✅ Yes   | —            |
 | `thumbnail_file` | Path to rendered PNG file            | ❌ No    | —            |
 | `export_selected`| Export only selected objects         | ❌ No    | false        |
 
