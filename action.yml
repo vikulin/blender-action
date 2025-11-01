@@ -8,7 +8,7 @@ inputs:
 
   output_file:
     description: 'Path to export STL file'
-    required: false
+    required: true
 
   thumbnail_file:
     description: 'Path to thumbnail preview file of the STL'
