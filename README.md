@@ -7,7 +7,8 @@
 ## 📦 Features
 
 - Automate 3D model exports and renders in your CI/CD workflow
-- Supports Blender `.blend` to `.stl` and `.png` conversion
+- Supports Blender `.blend` to `.stl`
+- STL model preview
 - Runs inside a Docker container for consistency
 
 ## 🧰 Inputs
@@ -16,7 +17,7 @@
 |------------------|--------------------------------------|----------|--------------|
 | `input_file`     | Path to the Blender source file      | ✅ Yes   | —            |
 | `output_file`    | Path to export STL file              | ❌ No    | —            |
-| `render_file`    | Path to rendered PNG file (frame 1)  | ❌ No    | —            |
+| `thumbnail_file` | Path to rendered PNG file            | ❌ No    | —            |
 | `export_selected`| Export only selected objects         | ❌ No    | false        |
 
 ## 🚀 Usage
