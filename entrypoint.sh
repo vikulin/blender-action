@@ -3,7 +3,7 @@ set -e
 
 INPUT_FILE="$INPUT_INPUT_FILE"
 OUTPUT_FILE="$INPUT_OUTPUT_FILE"
-RENDER_FILE="$INPUT_RENDER_FILE"
+THUMBNAIL_FILE="$INPUT_THUMBNAIL_FILE"
 EXPORT_SELECTED="$INPUT_EXPORT_SELECTED"
 
 # STL Export
@@ -24,15 +24,20 @@ if [[ -n "$OUTPUT_FILE" ]]; then
   fi
 fi
 
-# PNG Render
-if [[ -n "$RENDER_FILE" ]]; then
-  echo "Rendering PNG to $RENDER_FILE"
-  mkdir -p "$(dirname "$GITHUB_WORKSPACE/$RENDER_FILE")"
+# Generate preview via stl-thumb
+if [[ -n "$THUMBNAIL_FILE" ]]; then
+  echo "Generating STL preview with stl-thumb → $THUMBNAIL_FILE"
+  mkdir -p "$(dirname "$GITHUB_WORKSPACE/$THUMBNAIL_FILE")"
 
-  # Remove file extension for Blender's -o (e.g. output.png → output)
-  RENDER_PATH_NO_EXT="${RENDER_FILE%.*}"
+  # Ensure stl-thumb is available
+  if ! command -v stl-thumb &> /dev/null; then
+    echo "Installing stl-thumb v0.5.0 via .deb"
+    DEB_URL="https://github.com/unlimitedbacon/stl-thumb/releases/download/v0.5.0/stl-thumb_0.5.0_amd64.deb"
+    DEB_FILE="/tmp/stl-thumb_0.5.0_amd64.deb"
+    wget -O "$DEB_FILE" "$DEB_URL"
+    sudo apt-get install -y "$DEB_FILE"
+  fi
 
-  blender -b "$GITHUB_WORKSPACE/$INPUT_FILE" \
-    -o "$GITHUB_WORKSPACE/$RENDER_PATH_NO_EXT" \
-    -F PNG -f 1
+  # Generate preview
+  stl-thumb "$GITHUB_WORKSPACE/$OUTPUT_FILE" "$GITHUB_WORKSPACE/$THUMBNAIL_FILE" --size 800 --background transparent
 fi

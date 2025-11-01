@@ -10,8 +10,8 @@ inputs:
     description: 'Path to export STL file'
     required: false
 
-  render_file:
-    description: 'Path to rendered PNG file (frame 1)'
+  thumbnail_file:
+    description: 'Path to thumbnail preview file of the STL'
     required: false
 
   export_selected:

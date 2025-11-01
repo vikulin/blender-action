@@ -42,39 +42,14 @@
     export_selected: true
 ```
 
-### Render PNG
+### Render PNG STL preview
 
 ```yaml
 - name: Render PNG
   uses: vikulin/blender-action@v1
   with:
     input_file: models/my_model.blend
-    render_file: render/preview.png
+    thumbnail_file: render/preview.png
 ```
-
-## 🖼️ Rendering Output
-
-Choose the location to save rendered frames.
-
-When rendering an animation, the frame number is appended at the end of the file name with four padded zeros by default.
-
-For example:
-
-```yaml
-render_file: render/image.png
-```
-
-Will produce:
-
-```
-render/image0001.png
-```
-
-You can set a custom padding size by adding the appropriate number of `#` characters anywhere in the file name. Blender will replace the `#` with the frame number:
-
-* `render/image_##_test.png` → `render/image_01_test.png`
-* `render/preview_####.png` → `render/preview_0001.png`
-
----
 
 > 💬 Have suggestions or questions? Feel free to open an issue or submit a PR.
