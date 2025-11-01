@@ -14,6 +14,11 @@ inputs:
     description: 'Path to rendered PNG file (frame 1)'
     required: false
 
+  export_selected:
+    description: 'Whether to export only selected objects (true/false)'
+    required: false
+    default: 'false'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'

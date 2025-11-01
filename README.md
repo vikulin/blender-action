@@ -12,11 +12,12 @@
 
 ## 🧰 Inputs
 
-| Name          | Description                          | Required | Default      |
-|---------------|--------------------------------------|----------|--------------|
-| `input_file`  | Path to the Blender source file      | ✅ Yes   | —            |
-| `output_file` | Path to export STL file              | ❌ No    | —            |
-| `render_file` | Path to rendered PNG file (frame 1)  | ❌ No    | —            |
+| Name             | Description                          | Required | Default      |
+|------------------|--------------------------------------|----------|--------------|
+| `input_file`     | Path to the Blender source file      | ✅ Yes   | —            |
+| `output_file`    | Path to export STL file              | ❌ No    | —            |
+| `render_file`    | Path to rendered PNG file (frame 1)  | ❌ No    | —            |
+| `export_selected`| Export only selected objects         | ❌ No    | false        |
 
 ## 🚀 Usage
 
@@ -28,7 +29,18 @@
   with:
     input_file: models/my_model.blend
     output_file: export/my_model.stl
-````
+```
+
+### Export Only Selected Objects
+
+```yaml
+- name: Export Selected Objects
+  uses: vikulin/blender-action@v1
+  with:
+    input_file: models/my_model.blend
+    output_file: export/selected_objects.stl
+    export_selected: true
+```
 
 ### Render PNG
 
