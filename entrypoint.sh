@@ -34,8 +34,8 @@ if [[ -n "$THUMBNAIL_FILE" ]]; then
     echo "Installing stl-thumb v0.5.0 via .deb"
     DEB_URL="https://github.com/unlimitedbacon/stl-thumb/releases/download/v0.5.0/stl-thumb_0.5.0_amd64.deb"
     DEB_FILE="/tmp/stl-thumb_0.5.0_amd64.deb"
-    wget -O "$DEB_FILE" "$DEB_URL"
-    sudo apt-get install -y "$DEB_FILE"
+    curl -L -o "$DEB_FILE" "$DEB_URL"
+    sudo apt-get install -y "$DEB_FILE" || sudo dpkg -i "$DEB_FILE"
   fi
 
   # Generate preview
